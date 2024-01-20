@@ -2,6 +2,8 @@
 
 include ('../app/config.php');
 include ('../admin/layout/parte1.php');
+include ('../app/controllers/roles/listado_de_roles.php');
+include ('../app/controllers/usuarios/listado_de_usuarios.php');
 
 ?>
 
@@ -9,10 +11,51 @@ include ('../admin/layout/parte1.php');
 <div class="content-wrapper">
     <br>
     <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
+    <div class="container">
+        <div class="container">
             <div class="row">
-                <h1> Vista Principal </h1>
+                <h1> <?=APP_NAME;?> </h1>
+            </div>
+            <br>
+            <div class="row">
+                <!-- tarjetas de modulos -->
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-primary">
+                        <?php
+                        $contador_de_roles=0;
+                        foreach ($roles as $role){
+                            $contador_de_roles=$contador_de_roles + 1;
+                        }
+                        ?>
+                        <div class="inner">
+                            <h3><?= $contador_de_roles;?></h3>
+                            <p>Roles Registrados</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas"><i class="bi bi-bookmarks"></i></i>
+                        </div>
+                        <a href="<?= APP_URL;?>/admin/roles" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <?php
+                        $contador_de_usuarios=0;
+                        foreach ($usuarios as $usuario){
+                            $contador_de_usuarios=$contador_de_usuarios + 1;
+                        }
+                        ?>
+                        <div class="inner">
+                            <h3><?= $contador_de_usuarios;?></h3>
+                            <p>Usuarios Registrados</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas"><i class="bi bi-people-fill"></i></i>
+                        </div>
+                        <a href="<?= APP_URL;?>/admin/usuarios" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

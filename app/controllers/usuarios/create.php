@@ -3,6 +3,7 @@
 include ('../../../app/config.php');
 
 $nombres = $_POST['nombres'];
+$nombres = mb_strtoupper($nombres,'UTF-8');
 $rol_id = $_POST['rol_id'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -13,7 +14,7 @@ if($password == $password_repet){
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     $sentencia = $pdo->prepare('INSERT INTO usuarios
-(nombres,rol_id,email,password, fyh_creacion, estado)
+         (nombres,rol_id,email,password, fyh_creacion, estado)
 VALUES ( :nombres,:rol_id,:email,:password,:fyh_creacion,:estado)');
 
     $sentencia->bindParam(':nombres',$nombres);
