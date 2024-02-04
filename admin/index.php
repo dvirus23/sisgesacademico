@@ -5,6 +5,9 @@ include ('../admin/layout/parte1.php');
 include ('../app/controllers/roles/listado_de_roles.php');
 include ('../app/controllers/usuarios/listado_de_usuarios.php');
 include ('../app/controllers/niveles/listado_de_niveles.php');
+include ('../app/controllers/grados/listado_de_grados.php');
+include ('../app/controllers/materias/listado_de_materias.php');
+
 
 ?>
 
@@ -76,6 +79,45 @@ include ('../app/controllers/niveles/listado_de_niveles.php');
                         <a href="<?= APP_URL;?>/admin/niveles" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
                     </div>
                 </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <?php
+                        $contador_de_grados=0;
+                        foreach ($grados as $grado){
+                            $contador_de_grados=$contador_de_grados + 1;
+                        }
+                        ?>
+                        <div class="inner">
+                            <h3><?= $contador_de_grados;?></h3>
+                            <p>Grados  Registrados</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas"><i class="bi bi-people-fill"></i></i>
+                        </div>
+                        <a href="<?= APP_URL;?>/admin/grados" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <?php
+                        $contador_de_materias=0;
+                        foreach ($materias as $materia){
+                            $contador_de_materias=$contador_de_materias + 1;
+                        }
+                        ?>
+                        <div class="inner">
+                            <h3><?= $contador_de_materias;?></h3>
+                            <p>Materias Registradas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas"><i class="bi bi-people-fill"></i></i>
+                        </div>
+                        <a href="<?= APP_URL;?>/admin/materias" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

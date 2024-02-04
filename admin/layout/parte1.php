@@ -8,7 +8,7 @@ if (isset($_SESSION['sesion_email'])){
 
     $datos_sesion_usuarios = $query_sesion->fetchAll(PDO::FETCH_ASSOC);
     foreach ($datos_sesion_usuarios as $datos_sesion_usuario){
-        $nombre_sesion_usuario = $datos_sesion_usuario['nombres'];
+        $nombre_sesion_usuario = $datos_sesion_usuario['email'];
     }
 }else{
     echo "el usuario no paso por el login";
@@ -142,6 +142,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </ul>
                     </li>
+
+
                     <li class="nav-item">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas"><i class="bi bi-bookshelf"></i></i>
@@ -159,6 +161,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas"><i class="bi bi-bar-chart-steps"></i></i>
+                            <p>
+                                Grados
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/grados/" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de Grados</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas"><i class="bi bi-book-half"></i></i>
+                            <p>
+                                Materias
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?=APP_URL;?>/admin/materias/" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de Materias</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas"><i class="bi bi-bookmarks"></i></i>
