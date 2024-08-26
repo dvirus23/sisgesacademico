@@ -3,8 +3,7 @@
 include ('../../../app/config.php');
 
 $id_usuario = $_POST['id_usuario'];
-$nombres = $_POST['nombres'];
-$nombres = mb_strtoupper($nombres,'UTF-8');
+
 $rol_id = $_POST['rol_id'];
 $email = $_POST['email'];
 
@@ -14,13 +13,12 @@ $password_repet = $_POST['password_repet'];
 if($password == ""){
 
     $sentencia = $pdo->prepare("UPDATE usuarios 
-        SET nombres=:nombres,
-            rol_id=:rol_id,
+        SET rol_id=:rol_id,
             email=:email,
             fyh_actualizacion=:fyh_actualizacion
         WHERE id_usuario=:id_usuario ");
 
-    $sentencia->bindParam(':nombres',$nombres);
+
     $sentencia->bindParam(':rol_id',$rol_id);
     $sentencia->bindParam(':email',$email);
     $sentencia->bindParam('fyh_actualizacion',$fechahora);
@@ -53,14 +51,13 @@ if($password == ""){
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $sentencia = $pdo->prepare("UPDATE usuarios 
-        SET nombres=:nombres,
-            rol_id=:rol_id,
+        SET rol_id=:rol_id,
             email=:email,
             password=:password,
             fyh_actualizacion=:fyh_actualizacion
         WHERE id_usuario=:id_usuario ");
 
-        $sentencia->bindParam(':nombres',$nombres);
+
         $sentencia->bindParam(':rol_id',$rol_id);
         $sentencia->bindParam(':email',$email);
         $sentencia->bindParam(':password',$password);

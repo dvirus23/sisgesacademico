@@ -7,6 +7,7 @@ include ('../app/controllers/usuarios/listado_de_usuarios.php');
 include ('../app/controllers/niveles/listado_de_niveles.php');
 include ('../app/controllers/grados/listado_de_grados.php');
 include ('../app/controllers/materias/listado_de_materias.php');
+include ('../app/controllers/administrativos/listado_de_administrativos.php');
 
 
 ?>
@@ -93,7 +94,7 @@ include ('../app/controllers/materias/listado_de_materias.php');
                             <p>Grados  Registrados</p>
                         </div>
                         <div class="icon">
-                            <i class="fas"><i class="bi bi-people-fill"></i></i>
+                            <i class="fas"><i class="bi bi-bar-chart-steps"></i></i>
                         </div>
                         <a href="<?= APP_URL;?>/admin/grados" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
                     </div>
@@ -112,9 +113,28 @@ include ('../app/controllers/materias/listado_de_materias.php');
                             <p>Materias Registradas</p>
                         </div>
                         <div class="icon">
-                            <i class="fas"><i class="bi bi-people-fill"></i></i>
+                            <i class="fas"><i class="bi bi-book-half"></i></i>
                         </div>
                         <a href="<?= APP_URL;?>/admin/materias" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-default">
+                        <?php
+                        $contador_de_administrativos=0;
+                        foreach ($administrativos as $administrativo){
+                            $contador_de_administrativos=$contador_de_administrativos + 1;
+                        }
+                        ?>
+                        <div class="inner">
+                            <h3><?= $contador_de_administrativos;?></h3>
+                            <p>Personal Administrativo</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas"><i class="bi bi-person-lines-fill"></i></i>
+                        </div>
+                        <a href="<?= APP_URL;?>/admin/administrativos" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i> </a>
                     </div>
                 </div>
 

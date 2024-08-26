@@ -2,7 +2,8 @@
 
 include ('../../app/config.php');
 include ('../../admin/layout/parte1.php');
-include ('../../app/controllers/usuarios/listado_de_usuarios.php');
+include ('../../app/controllers/docentes/listado_de_docentes.php');
+
 
 ?>
 
@@ -14,7 +15,7 @@ include ('../../app/controllers/usuarios/listado_de_usuarios.php');
         <div class="container">
             <div class="row">
 
-                <h1> Listado de usuarios</h1>
+                <h1> Listado del personal Docente</h1>
             </div>
             <br>
             <div class="row">
@@ -22,9 +23,9 @@ include ('../../app/controllers/usuarios/listado_de_usuarios.php');
                 <div class="col-md-12">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuarios registrados</font></font></h3>
+                            <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docentes registrados</font></font></h3>
                             <div class="card-tools">
-                                <a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i>  Crear nuevo USUARIO</a>
+                                <a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i>  Crear nuevo personal DOCENTE</a>
                             </div>
 
                         </div>
@@ -34,37 +35,44 @@ include ('../../app/controllers/usuarios/listado_de_usuarios.php');
                                         <thead>
                                         <tr>
                                             <th><center>Nro</center></th>
-                                            <th><center>Nombre del rol</center></th>
+                                            <th><center>Nombre del docente</center></th>
+                                            <th><center>Rol</center></th>
+                                            <th><center>Cedula de Identidad </center></th>
+                                            <th><center>Fecha de Nacimiento </center></th>
                                             <th><center>Correo Electronico </center></th>
-                                            <th><center>Fecha de Creacion </center></th>
                                             <th><center>Estado </center></th>
                                             <th><center>Acciones </center></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $contador_usuarios =0;
-                                        foreach ($usuarios as $usuario){
-                                            $id_usuario = $usuario['id_usuario'];
-                                            $contador_usuarios = $contador_usuarios + 1;
+                                        $contador_docentes =0;
+                                        foreach ($docentes as $docente){
+                                            $id_docente = $docente['id_docente'];
+                                            $contador_docentes = $contador_docentes + 1;
                                             ?>
                                             <tr>
-                                                <td style="text-align: center;"><?=$contador_usuarios;?></td>
-
-                                                <td><?=$usuario['nombre_rol'];?></td>
-                                                <td><?=$usuario['email'];?></td>
-                                                <td><?=$usuario['fyh_creacion'];?></td>
-                                                <td><?=$usuario['estado'];?></td>
+                                                <td style="text-align: center;"><?=$contador_docentes;?></td>
+                                                <td><?=$docente['nombres']." ".$docente['apellidos'];?></td>
+                                                <td><?=$docente['nombre_rol'];?></td>
+                                                <td><?=$docente['ci'];?></td>
+                                                <td style="text-align: center" ><?=$docente['fecha_nacimiento'];?></td>
+                                                <td><?=$docente['email'];?></td>
+                                                <td><?php
+                                                    if ($docente['estado']=="1") echo "ACTIVO";
+                                                    else echo "INACTIVO";
+                                                    ?>
+                                                </td>
                                                 <td style="text-align: center">
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="show.php?id=<?=$id_usuario;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                                                        <a href="edit.php?id=<?=$id_usuario;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                                                        <form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar(event)" method="post" id="miFormulario<?=$id_usuario;?>">
-                                                            <input type="text" name="id_usuario" value="<?=$id_usuario;?>" hidden>
+                                                        <a href="show.php?id=<?=$id_docente;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                                                        <a href="edit.php?id=<?=$id_docente;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                                        <!--<form action="<?=APP_URL;?>/app/controllers/usuarios/delete.php" onclick="preguntar(event)" method="post" id="miFormulario<?=$id_docente;?>">
+                                                            <input type="text" name="id_usuario" value="<?=$id_docente;?>" hidden>
                                                             <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px" ><i class="bi bi-trash"></i></button>
                                                         </form>
                                                         <script>
-                                                            function preguntar<?=$id_usuario;?>(event) {
+                                                            function preguntar<?=$id_docente;?>(event) {
                                                                 event.preventDefault();
                                                                 Swal.fire({
                                                                     title: 'Eliminar registro',
@@ -77,13 +85,14 @@ include ('../../app/controllers/usuarios/listado_de_usuarios.php');
                                                                     denyButtonText: 'Cancelar',
                                                                 }).then((result) => {
                                                                     if (result.isConfirmed) {
-                                                                        var form = $('#miFormulario<?=$id_usuario;?>');
+                                                                        var form = $('#miFormulario<?=$id_docente;?>');
                                                                         form.submit();
 
                                                                     }
                                                                 });
                                                             }
                                                         </script>
+                                                    --!>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -120,12 +129,12 @@ include ('../../layout/mensajes.php');
             "pageLength": 5,
             "language": {
                 "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Usuarios",
-                "infoEmpty": "Mostrando 0 a 0 de 0 Usuarios",
-                "infoFiltered": "(Filtrado de _MAX_ total Usuarios)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Personal Docente",
+                "infoEmpty": "Mostrando 0 a 0 de 0 Personal Docente",
+                "infoFiltered": "(Filtrado de _MAX_ total Personal Docente)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Usuarios",
+                "lengthMenu": "Mostrar _MENU_ Personal Docente",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",
